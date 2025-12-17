@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
   const isMenuOpen = useSelector(store => store?.app?.isMenuOpen);
-  console.log(isMenuOpen);
 
   //Early return
   if(!isMenuOpen) return null;

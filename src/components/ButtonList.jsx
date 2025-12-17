@@ -1,6 +1,7 @@
 import React,{ useRef, useEffect } from 'react';
 import Button from './Button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { btnList } from '../utils/constants';
 
 const ButtonList = () => {
   const scrollRef = useRef(null);
@@ -53,7 +54,6 @@ const ButtonList = () => {
     })
   }
 
-  const btnList = ["All", "Music", "Sports", "Gaming", "News", "Movies", "Fashion", "Live", "Learning", "Spotlight", "Travel", "Comedy", "Podcast", "Documentary", "Autos & Vehicles", "Food", "Animals", "Science & Technology", "Trailers", "All", "Music", "Sports", "Gaming", "News", "Movies", "Fashion", "Live", "Learning", "Spotlight", "Travel", "Comedy", "Podcast", "Learning", "Spotlight", "Travel", "Comedy", "Podcast", "Documentary", "Autos & Vehicles", "Food", "Animals", "Science & Technology", "Trailers"];
   return (
     <div className='relative w-full flex items-center justify-center'>
       {isAtStart && <button
