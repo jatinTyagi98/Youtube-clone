@@ -73,38 +73,6 @@ const Header = () => {
           </ul>
         </div>}
       </div>
-      {/* <div className="col-span-8">
-        <div className="flex justify-center relative">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setShowSuggestions(true)}
-            className="w-1/2 border border-gray-300 h-12 rounded-l-full font-light text-lg px-4 focus:outline-none"
-            placeholder="Search"
-          />
-
-          <button className="border border-gray-300 h-12 p-3 rounded-r-full bg-gray-100">
-            🔍
-          </button>
-
-          {showSuggestions && searchQuery.length > 0 && (
-            <div className="absolute top-12 w-1/2 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
-              <ul>
-                {searchSuggestions.map((suggestion) => (
-                  <li
-                    key={suggestion}
-                    className="hover:bg-gray-100 py-2 px-4 cursor-pointer"
-                    onMouseDown={() => setShowSuggestions(false)}
-                  >
-                    🔍 {suggestion}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div> */}
       <div className="flex col-span-2 justify-end">
         <img src={notificationBell} alt="notification-bell" className="h-8" />
         <img src={userIcon} alt="user-icon" className="h-8 mx-10" />
