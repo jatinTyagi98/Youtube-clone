@@ -21,3 +21,10 @@ If you are developing a production application, we recommend using TypeScript wi
  - we made diagramatic structure of the app stating components and sub-components
  - we installed tailwind css and configured it, using vite we don't need to install post-css as vite handle it internally
  - 
+
+## Steps to impliment cache
+ - Make a new slice which store results for every search user makes
+ - make an object with unique keys { searchKey: [suggestions related to that key]}
+ - for eg: if user types ip and ipho -> { ip: [respetive suggestions for ip], ipho: [respetive suggestions for ip]}
+ - check if cache already has that key, don't make api call again
+ - else, make the api call and add the new search entry in the cache

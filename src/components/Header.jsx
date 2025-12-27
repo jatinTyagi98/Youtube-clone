@@ -4,17 +4,29 @@ import hamburgerMenu from '../assets/logo/hamburger-menu.png'
 import notificationBell from '../assets/logo/notification-bell.png'
 import userIcon from '../assets/logo/user-logo.png'
 import { toggleMenu } from '../utils/appSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { YOUTUBE_SEARCH_API } from '../utils/constants'
+import { addToSearchCache } from '../utils/searchSlice'
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [searchSuggestions, setSearchSuggestions] = React.useState([]);
   const [showSuggestions, setShowSuggestions] = React.useState(false);
+  const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
 
+  // { 'iphone': ["iphone", "iphone 14", "iphone 14 pro max"], 'ipho': [...] } -> cache view
+
   useEffect(() => {
-    const timer = setTimeout(() =>  getSearchSuggestions(), 200)
+    const timer = setTimeout(() =>  {
+      if(searchCache[searchQuery]) {
+        //if cache has the searchQuery, then directly set the suggestions from cache
+        setSearchSuggestions(searchCache[searchQuery])
+      } else {
+        //otherwise make an API call to get the suggestions
+        getSearchSuggestions();
+      }
+    }, 200)
 
     return () => clearTimeout(timer);
   }, [searchQuery])
@@ -33,9 +45,14 @@ const Header = () => {
 
   const getSearchSuggestions = async() => {
     //fetch suggestions from API'
+    console.log("API CALL - ", searchQuery);
     const response = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const data = await response.json();
     setSearchSuggestions(data[1]);
+    //dispatch an action to store the suggestions in redux store
+    dispatch(addToSearchCache({
+      [searchQuery]: data[1]
+    }))
   }
 
   const toggleSidebar = () => {
